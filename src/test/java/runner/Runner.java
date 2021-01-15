@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -21,12 +23,11 @@ public class Runner {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         actions = new Actions(driver);
-        String pageSource = driver.getPageSource();
 
 
     }
 
-    @AfterTest
+    @AfterMethod
     protected void tearDown() {
         driver.quit();
     }

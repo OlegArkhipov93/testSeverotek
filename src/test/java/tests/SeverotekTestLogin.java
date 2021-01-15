@@ -16,5 +16,4 @@ public class SeverotekTestLogin extends Runner {
         Assert.assertTrue(driver.getTitle().contains("Панель управления"));
     }
 
-
 }

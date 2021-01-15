@@ -39,8 +39,8 @@ public class LoginPage implements StableElementSearch {
         return this;
     }
 
-    public LoginPage clickSignUp() {
+    public MainPage clickSignUp() {
         searchElementByXpath(signUpButton).click();
-        return this;
+        return new MainPage(driver);
     }
 }
