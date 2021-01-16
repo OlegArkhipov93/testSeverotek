@@ -3,6 +3,7 @@ package tests;
 import helpers.StaticDataProvider;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.BlogPage;
@@ -11,7 +12,7 @@ import pages.MainPage;
 import runner.Runner;
 
 public class SeverotekTestBlog extends Runner {
-    @BeforeTest
+    @BeforeMethod
     public void login(){
         new LoginPage(driver)
                 .open("https://igorakintev.ru/admin/")
@@ -26,9 +27,10 @@ public class SeverotekTestBlog extends Runner {
     public void DeleteLastCreatedEntry(String title, String slug, String markdown, String text) {
         new MainPage(driver)
                 .openEntries()
-                .clickLastCreatedEntry()
+                .clickLastCreatedEntry(title)
                 .deleteLastEntry()
                 .submitDeleteEntry();
-        Assert.assertFalse(driver.getPageSource().contains(title));
+        Assert.assertEquals(driver.getCurrentUrl(), "https://igorakintev.ru/admin/blog/entry/");
+//        Assert.assertFalse(driver.getPageSource().contains(title)); // провалится при кроссбраузерном использовании
     }
 }

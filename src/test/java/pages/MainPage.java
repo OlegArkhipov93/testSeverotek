@@ -1,8 +1,11 @@
 package pages;
 
 import helpers.StableElementSearch;
+import okhttp3.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
 
 
 public class MainPage implements StableElementSearch {
@@ -31,6 +34,7 @@ public class MainPage implements StableElementSearch {
         driver.manage().window().maximize();
         return new MainPage(driver);
     }
+
 
     public MainPage clickButtonAddEntries() {
         searchElementByXpath(addEntry).click();
