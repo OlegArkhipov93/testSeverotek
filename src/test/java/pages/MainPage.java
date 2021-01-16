@@ -44,7 +44,7 @@ public class MainPage implements StableElementSearch {
 
     public MainPage setSlug(String slug) {
         searchElementByCss(addEntrySlug).clear();
-        searchElementByCss(addEntrySlug).click();
+        searchElementByCss(addEntrySlug).sendKeys(slug);
         return new MainPage(driver);
     }
 

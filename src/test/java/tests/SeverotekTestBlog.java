@@ -1,5 +1,6 @@
 package tests;
 
+import helpers.StaticDataProvider;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -11,7 +12,7 @@ import runner.Runner;
 
 public class SeverotekTestBlog extends Runner {
     @BeforeTest
-    public void login(String username, String password){
+    public void login(){
         new LoginPage(driver)
                 .open("https://igorakintev.ru/admin/")
                 .setUserName("selenium")
@@ -20,14 +21,14 @@ public class SeverotekTestBlog extends Runner {
     }
 
 
-    @Test(groups = {"actions with entries"})
+    @Test(groups = {"testActionsWithEntries"}, dataProvider = "entryFields", dataProviderClass = StaticDataProvider.class)
     @Description("testing delete entry")
-    public void deleteLastEntry() {
+    public void DeleteLastCreatedEntry(String title, String slug, String markdown, String text) {
         new MainPage(driver)
                 .openEntries()
                 .clickLastCreatedEntry()
                 .deleteLastEntry()
                 .submitDeleteEntry();
-        Assert.assertFalse(driver.getPageSource().contains("Title56435235"));
+        Assert.assertFalse(driver.getPageSource().contains(title));
     }
 }

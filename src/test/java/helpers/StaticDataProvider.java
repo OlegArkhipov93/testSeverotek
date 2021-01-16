@@ -10,7 +10,7 @@ public class StaticDataProvider {
         return new Object[][]{{"selenium", "super_password"}};
     }
 
-    @BeforeGroups(value = {"addEntries"})
+    @BeforeGroups(value = {"testActionsWithEntries"})
     @DataProvider(name = "entryFields")
     public Object[][] entryFields() {
         return new Object[][]
