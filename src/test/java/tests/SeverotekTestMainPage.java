@@ -1,43 +1,44 @@
 package tests;
 
+import helpers.StaticDataProvider;
 import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.MainPage;
 import runner.Runner;
 
 public class SeverotekTestMainPage extends Runner {
 
-    @BeforeTest
-    public void login(){
+    @BeforeMethod
+    public void login(String username, String password) {
         new LoginPage(driver)
-                .open()
+                .open("https://igorakintev.ru/admin/")
                 .setUserName("selenium")
                 .setPassword("super_password")
                 .clickSignUp();
     }
 
     @Test
+    @Description("testing availability 'Добавить Entry'")
     public void testTitleEntries(){
         new MainPage(driver)
                 .clickButtonAddEntries();
         Assert.assertTrue(driver.getTitle().contains("Добавить entry"));
     }
 
-    @Test
-    @Description("Test add Entry")
-    public void testAddEntry(){
+    @Test(groups = {"addEntries"}, dataProvider = "entryFields", dataProviderClass = StaticDataProvider.class)
+    @Description("Testing add Entry")
+    public void testAddEntry(String title, String slug, String markdown, String text){
         new MainPage(driver)
                 .clickButtonAddEntries()
-                .setTitle("Title56435235")
-                .setSlug("Slug56435235")
-                .setMarkdown("Markdown56435235")
-                .setText("Text56435235")
+                .setTitle(title)
+                .setSlug(slug)
+                .setMarkdown(markdown)
+                .setText(text)
                 .clickSaveButton()
                 .open("http://igorakintev.ru/blog/");
-        Assert.assertTrue(driver.getPageSource().contains("Title56435235"));
+        Assert.assertTrue(driver.getPageSource().contains(title));
     }
 
 }

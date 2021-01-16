@@ -23,8 +23,8 @@ public class LoginPage implements StableElementSearch {
         return this.driver;
     }
 
-    public LoginPage open() {
-        driver.get("https://igorakintev.ru/admin/");
+    public LoginPage open(String URL) {
+        driver.get(URL);
         driver.manage().window().maximize();
         return new LoginPage(driver);
     }

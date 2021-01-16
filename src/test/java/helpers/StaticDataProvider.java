@@ -4,9 +4,17 @@ import org.testng.annotations.DataProvider;
 
 public class StaticDataProvider {
 
-//    @DataProvider(name = "EntriesDataProvider")
-//    public String setEntryTitle = "Title" + Math.random();
-//    public String setEntrySlug = "Slug" + Math.random();
-//    }
+    @BeforeGroups(value = {"SmokeSingUp"})
+    @DataProvider(name = "loginDataProvider")
+    public Object[][] loginDataProvider() {
+        return new Object[][]{{"selenium", "super_password"}};
+    }
+
+    @BeforeGroups(value = {"addEntries"})
+    @DataProvider(name = "entryFields")
+    public Object[][] entryFields() {
+        return new Object[][]
+                {{"Title56435235", "Slug56435235", "Markdown56435235", "Text56435235"}};
+    }
 
 }

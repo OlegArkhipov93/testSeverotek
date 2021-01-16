@@ -1,0 +1,1 @@
+{"uuid":"f3c1c777-f85a-4c5d-b482-0adad80d4c3c","name":"testSeverotek","children":["1cc16a32-5e26-433a-83b7-ad6f7796fc25"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1610778933623,"stop":1610778936273}],"afters":[],"links":[],"start":1610778933609,"stop":1610778936365}

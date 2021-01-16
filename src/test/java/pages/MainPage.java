@@ -12,12 +12,12 @@ public class MainPage implements StableElementSearch {
     By addEntry = By.xpath("//a[@href='/admin/blog/entry/add/']");
     By addEntryTitle = By.cssSelector("input#id_title");
     By addEntrySlug = By.cssSelector("input#id_slug");
-    By addEntryTextMarkdown= By.cssSelector("textarea#id_text_markdown");
+    By addEntryTextMarkdown = By.cssSelector("textarea#id_text_markdown");
     By addEntryText = By.cssSelector("textarea#id_text");
     By saveButton = By.xpath("//input[@name='_save']");
     By openEntries = By.linkText("Entries");
 
-    public MainPage(WebDriver driver){
+    public MainPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -36,27 +36,37 @@ public class MainPage implements StableElementSearch {
         searchElementByXpath(addEntry).click();
         return new MainPage(driver);
     }
-    public MainPage setTitle(String title){
+
+    public MainPage setTitle(String title) {
         searchElementByCss(addEntryTitle).sendKeys(title);
         return new MainPage(driver);
     }
-    public MainPage setSlug(String slug){
-        searchElementByCss(addEntrySlug).sendKeys(slug);
+
+    public MainPage setSlug(String slug) {
+        searchElementByCss(addEntrySlug).clear();
+        searchElementByCss(addEntrySlug).click();
         return new MainPage(driver);
     }
-    public MainPage setMarkdown(String markdown){
+
+    public MainPage setMarkdown(String markdown) {
         searchElementByCss(addEntryTextMarkdown).sendKeys(markdown);
         return new MainPage(driver);
     }
-    public MainPage setText(String text){
+
+    public MainPage setText(String text) {
         searchElementByCss(addEntryText).sendKeys(text);
         return new MainPage(driver);
     }
-    public MainPage clickSaveButton(){
+
+    public MainPage clickSaveButton() {
         searchElementByXpath(saveButton).click();
         return new MainPage(driver);
     }
 
+    public BlogPage openEntries() {
+        searchElementByCss(openEntries).click();
+        return new BlogPage(driver);
+    }
 
 //    public MainPage clickCheckboxLastEntry(){
 //        searchElementByXpath(checkBoxLastEntry).click();
@@ -69,8 +79,4 @@ public class MainPage implements StableElementSearch {
 //        return this;
 //    }
 
-    public BlogPage openEntries() {
-        searchElementByCss(openEntries).click();
-        return new BlogPage(driver);
-    }
 }

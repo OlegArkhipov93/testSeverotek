@@ -1,15 +1,22 @@
 package pages;
 
 import helpers.StableElementSearch;
+import helpers.StaticDataProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class BlogPage implements StableElementSearch {
     WebDriver driver;
 
+
     By submitButton = By.cssSelector("input[type='submit']");
     By deleteButton = By.cssSelector("a[class='deletelink']");
-    By lastCreatedEntry = By.linkText("Title56435235");
+    By lastCreatedEntry = By.linkText("Title56435235"); //поменять в случае замены входных параметров dataProvider
+
+
+//    By checkBoxLastEntry = By.xpath("//td//input[@value='']"); // or By.cssSelector("input.action-select[value='']")
+//    By selector = By.cssSelector("select");
+//    By executeButton = By.cssSelector("button.button");
 
     public BlogPage(WebDriver driver) {
         this.driver = driver;
@@ -20,10 +27,6 @@ public class BlogPage implements StableElementSearch {
         return this.driver;
     }
 
-
-//    By checkBoxLastEntry = By.xpath("//td//input[@value='3530']"); // or By.cssSelector("input.action-select[value='']")
-//    By selector = By.cssSelector("select");
-//    By executeButton = By.cssSelector("button.button");
 
     public BlogPage clickLastCreatedEntry() {
         driver.findElement(lastCreatedEntry).click();
