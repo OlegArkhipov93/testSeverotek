@@ -14,8 +14,8 @@ public class SeverotekTestMainPage extends Runner {
     public void login() {
         new LoginPage(driver)
                 .open("https://igorakintev.ru/admin/")
-                .setUserName("selenium")
-                .setPassword("super_password")
+                .setUserName("gdfg")
+                .setPassword("gfdggd")
                 .clickSignUp();
     }
 
